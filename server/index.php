@@ -20,7 +20,8 @@ $apis = [
     '/upload' => ['controller' => 'PhotoController', 'method' => 'insertPhoto'],
     '/photo' => ['controller' => 'PhotoController', 'method' => 'getPhoto'],
     '/photos' => ['controller' => 'PhotoController', 'method' => 'getPhotos'],
-    '/delete' => ['controller' => 'PhotoController', 'method' => 'deletePhoto']
+    '/delete' => ['controller' => 'PhotoController', 'method' => 'deletePhoto'],
+    '/search' => ['controller' => 'PhotoController', 'method' => 'search']
 ];
 
 if (isset($apis[$request])) {
