@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { signup } from '../../services/api';
+import "./SignupForm.css";
 const SignupForm = () => {
     const [username,setUsername]=useState('');
     const [email,setEmail]= useState('');
@@ -16,30 +17,36 @@ const SignupForm = () => {
         }
     }
   return (
-    <div>
-        <form onSubmit={handleSignup}>
-            <input 
-            type="text" 
-            placeholder='username'
-            value={username}
-            onChange={(e) =>setUsername(e.target.value)}
-            />
-            <input 
-            type="email" 
-            placeholder='Email'
-            value={email}
-            onChange={(e) =>setEmail(e.target.value)}
-            />
-            <input 
-            type="password" 
-            placeholder='Password'
-            value={password}
-            onChange={(e) =>setPassword(e.target.value)}
-            />
-            <button type='submit'>Signup</button>
-        </form>
-        {error && <div>{error}</div>}
+    <div className="signup-container">
+    <div className="signup-box">
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSignup}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+      {error && <div className="error-message">{error}</div>}
     </div>
+  </div>
   )
 }
 
