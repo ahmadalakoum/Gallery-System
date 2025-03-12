@@ -172,67 +172,6 @@ class PhotoController
             exit();
         }
     }
-    // public static function updatePhoto()
-    // {
-    //     $user_id = getBearerToken();
-    //     if (empty($user_id)) {
-    //         echo json_encode([
-    //             'status' => 'error',
-    //             'message' => 'Unauthorized'
-    //         ]);
-    //         exit();
-    //     }
-
-    //     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    //         echo json_encode([
-    //             'status' => 'error',
-    //             'message' => 'Invalid request method'
-    //         ]);
-    //         exit();
-    //     }
-
-    //     if (!isset($_GET['id'], $_POST['title'], $_POST['description'], $_POST['tags'])) {
-    //         echo json_encode([
-    //             'status' => 'error',
-    //             'message' => 'Missing required fields'
-    //         ]);
-    //         exit();
-    //     }
-
-    //     $id = $_GET['id'];
-
-    //     if (isset($_FILES['image'])) {
-    //         $image = $_FILES['image'];
-    //         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-
-    //         if (!in_array($image['type'], $allowedTypes) || $image['size'] > 5 * 1024 * 1024) {
-    //             echo json_encode([
-    //                 'status' => 'error',
-    //                 'message' => 'Invalid image type or size'
-    //             ]);
-    //             exit();
-    //         }
-
-    //         $uploadDir = __DIR__ . "/../../uploads/";
-    //         $imageName = uniqid() . "_" . basename($image['name']);
-    //         $fullImagePath = $uploadDir . $imageName;
-    //         $image_path = "/uploads/" . $imageName;
-
-    //         if (!move_uploaded_file($image['tmp_name'], $fullImagePath)) {
-    //             echo json_encode([
-    //                 'status' => 'error',
-    //                 'message' => 'Failed to save the image'
-    //             ]);
-    //             exit();
-    //         }
-    //     }
-
-    //     // Call update function
-    //     $result = Photo::update($id, $title, $description, $tags, $image_path, $user_id);
-
-    //     echo json_encode($result);
-    //     exit();
-    // }
     public static function search()
     {
         $userID = getBearerToken();

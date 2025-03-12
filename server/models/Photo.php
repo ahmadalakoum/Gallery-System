@@ -108,56 +108,6 @@ class Photo extends PhotoSkeleton
 
 
     }
-    // public static function update($id, $fields, $user_id)
-    // {
-    //     global $pdo;
-
-    //     if (empty($id) || empty($user_id)) {
-    //         return [
-    //             'status' => 'error',
-    //             'message' => 'Missing ID or User ID'
-    //         ];
-    //     }
-
-    //     // Check if the user owns the photo
-    //     $sqlCheck = "SELECT * FROM photos WHERE id = :id";
-    //     $stmtCheck = $pdo->prepare($sqlCheck);
-    //     $stmtCheck->execute([':id' => $id]);
-    //     $photo = $stmtCheck->fetch(PDO::FETCH_ASSOC);
-
-    //     if (!$photo || $photo['user_id'] != $user_id) {
-    //         return [
-    //             'status' => 'error',
-    //             'message' => 'Unauthorized or photo not found'
-    //         ];
-    //     }
-
-    //     // Prepare dynamic SQL query based on provided fields
-    //     $updateFields = [];
-    //     $params = [':id' => $id, ':user_id' => $user_id];
-
-    //     foreach ($fields as $key => $value) {
-    //         if (!empty($value)) {  // Only update non-empty fields
-    //             $updateFields[] = "$key = :$key";
-    //             $params[":$key"] = $value;
-    //         }
-    //     }
-
-    //     if (empty($updateFields)) {
-    //         return [
-    //             'status' => 'error',
-    //             'message' => 'No fields provided for update'
-    //         ];
-    //     }
-
-    //     $sqlUpdate = "UPDATE photos SET " . implode(", ", $updateFields) . " WHERE id = :id AND user_id = :user_id";
-    //     $stmtUpdate = $pdo->prepare($sqlUpdate);
-    //     $updated = $stmtUpdate->execute($params);
-
-    //     return $updated
-    //         ? ['status' => 'success', 'message' => 'Photo updated successfully']
-    //         : ['status' => 'error', 'message' => 'Failed to update photo'];
-    // }
 
 }
 
