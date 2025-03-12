@@ -38,6 +38,5 @@ class User extends UserSkeleton
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
-
     }
 }

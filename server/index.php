@@ -16,7 +16,11 @@ if ($request == '') {
 
 $apis = [
     '/register' => ['controller' => 'UserController', 'method' => 'registerUser'],
-    '/login' => ['controller' => 'UserController', 'method' => 'loginUser']
+    '/login' => ['controller' => 'UserController', 'method' => 'loginUser'],
+    '/upload' => ['controller' => 'PhotoController', 'method' => 'insertPhoto'],
+    '/photo' => ['controller' => 'PhotoController', 'method' => 'getPhoto'],
+    '/photos' => ['controller' => 'PhotoController', 'method' => 'getPhotos'],
+    '/delete' => ['controller' => 'PhotoController', 'method' => 'deletePhoto']
 ];
 
 if (isset($apis[$request])) {
