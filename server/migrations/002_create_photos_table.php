@@ -8,7 +8,7 @@ class CreatePhotosTable
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         description TEXT NOT NULL,
-        image_path TEXT NOT NULL,
+        image LONGTEXT NOT NULL,
         tags VARCHAR(255) NOT NULL,
         user_id INT,
         FOREIGN KEY (user_id) REFERENCES users(id)

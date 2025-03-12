@@ -10,19 +10,19 @@ class Photo extends PhotoSkeleton
         global $pdo;
 
         //check for empty fields
-        if (empty(self::$title) || empty(self::$description) || empty(self::$image_path) || empty(self::$tags)) {
+        if (empty(self::$title) || empty(self::$description) || empty(self::$image) || empty(self::$tags)) {
             return false;
         }
 
         //no empty fields =>insert into the database
-        $sql = "INSERT INTO photos (title,description,image_path,tags,user_id) VALUES (:title,:description,:image_path,:tags,:user_id)";
+        $sql = "INSERT INTO photos (title,description,image,tags,user_id) VALUES (:title,:description,:image,:tags,:user_id)";
         $stmt = $pdo->prepare($sql);
 
 
         $stmt->execute([
             ':title' => self::$title,
             ':description' => self::$description,
-            ':image_path' => self::$image_path,
+            ':image' => self::$image,
             ':tags' => self::$tags,
             ':user_id' => self::$user_id
         ]);

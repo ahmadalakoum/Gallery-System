@@ -18,17 +18,8 @@ class PhotoController
             ]);
             exit();
         }
-        // Check if file is uploaded
-        if (!isset($_FILES['image'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'No image uploaded'
-            ]);
-            exit();
-        }
 
-        //get the data
-        $image = $_FILES['image'];
+        $image = trim($_POST['image']);
         $title = trim($_POST['title']);
         $description = trim($_POST['description']);
         $tags = trim($_POST['tags']);
@@ -40,42 +31,21 @@ class PhotoController
             ]);
             exit();
         }
-        // Validate image type and size
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (!in_array($image['type'], $allowedTypes) || $image['size'] > 5 * 1024 * 1024) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Invalid image type or size'
-            ]);
-            exit();
-        }
 
 
-        $uploadDir = __DIR__ . "/../../uploads/";
-        $imageName = uniqid() . "_" . basename($image['name']);
-        $fullImagePath = $uploadDir . $imageName;
-        $image_path = "/uploads/" . $imageName;
+        Photo::create($title, $description, $image, $tags, $user_id);
+        $is_saved = Photo::save();
 
-        // Move the uploaded file
-        if (!move_uploaded_file($image['tmp_name'], $fullImagePath)) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Failed to save the image'
-            ]);
-            exit();
-        }
-        Photo::create($title, $description, $image_path, $tags, $user_id);
-        $Is_saved = Photo::save();
-        if ($Is_saved) {
+        if ($is_saved) {
             echo json_encode([
                 'status' => 'success',
-                'message' => 'photo uploaded'
+                'message' => 'Photo uploaded successfully'
             ]);
             exit();
         } else {
             echo json_encode([
                 'status' => 'error',
-                'message' => 'Error during Upload'
+                'message' => 'Error during upload'
             ]);
             exit();
         }
