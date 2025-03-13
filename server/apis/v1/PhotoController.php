@@ -177,7 +177,7 @@ class PhotoController
             ]);
             exit();
         }
-        $photos = Photo::searchPhotos($searchTerm);
+        $photos = Photo::searchPhotos($searchTerm, $userID);
         if (empty($photos)) {
             echo json_encode([
                 'status' => 'error',

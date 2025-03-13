@@ -79,14 +79,16 @@ class Photo extends PhotoSkeleton
             return false;
         }
     }
-    public static function searchPhotos($searchTerm)
+    public static function searchPhotos($searchTerm, $user_id)
     {
         global $pdo;
 
-        $sql = "SELECT *,u.username FROM photos p JOIN users u ON u.id=p.user_id WHERE title LIKE :searchTerm OR description LIKE :searchTerm OR tags LIKE :searchTerm";
+        $sql = "SELECT *  FROM photos WHERE user_id=:userID AND (title LIKE :searchTerm OR description LIKE :searchTerm OR tags LIKE :searchTerm)";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->execute([':searchTerm' => "%" . $searchTerm . "%"]);
+        $stmt->execute(
+            [':searchTerm' => "%" . $searchTerm . "%", ':userID' => $user_id]
+        );
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
