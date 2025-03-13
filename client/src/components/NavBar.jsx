@@ -33,6 +33,7 @@ const NavBar = ({onSearch}) => {
       <ul className="nav-links">
         <li>
           <Link to="/">Home</Link>
+          <Link to="/add">Add</Link>
         </li>
         {userID ? (
           <>

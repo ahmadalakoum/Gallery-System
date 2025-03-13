@@ -18,11 +18,19 @@ class PhotoController
             ]);
             exit();
         }
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (empty($data)) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Data is not sent'
+            ]);
+            exit();
+        }
 
-        $image = trim($_POST['image']);
-        $title = trim($_POST['title']);
-        $description = trim($_POST['description']);
-        $tags = trim($_POST['tags']);
+        $image = trim($data['image']);
+        $title = trim($data['title']);
+        $description = trim($data['description']);
+        $tags = trim($data['tags']);
 
         if (empty($title) || empty($description) || empty($tags) || empty($user_id)) {
             echo json_encode([
