@@ -1,67 +1,84 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #007bff;
-    padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #007bff;
+  padding: 15px 30px;
+  width: 100%;
+
+  z-index: 1000;
+}
+
+/* Logo */
+.logo a {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Navigation Links */
+.nav-links {
+  color: white;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+/* Logout Button */
+.logout-btn {
+  background: #ba0000;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+
+.logout-btn:hover {
+  background: #cc0000;
+}
+
+/* Search Input */
+.search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  margin-right: 20px;
+  font-size: 13px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+@media (max-width: 768px) {
+  .navbar{
+    flex-direction: column;
   }
-  
-  /* Logo */
-  .logo a {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  /* Navigation Links */
-  .nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
+
+
   .nav-links li {
-    display: inline-block;
-    color: white;
+    margin: 10px 0;
   }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-  }
-
-  
-  /* Logout Button */
-  .logout-btn {
-    background: #ba0000;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10px;
-  }
-  
-  .logout-btn:hover {
-    background: #cc0000;
-  }
-
 
   .search-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-    margin-right: 20px;
-    font-size: 13px;
+    width: 100%;
+    margin: 10px 0;
   }
-
-  .search-input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
+}
