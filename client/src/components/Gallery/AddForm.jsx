@@ -5,18 +5,23 @@ import { useNavigate } from 'react-router-dom';
 
 const AddForm = () => {
     const navigate = useNavigate();
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [tags, setTags] = useState('');
+    // const [title, setTitle] = useState('');
+    // const [description, setDescription] = useState('');
+    // const [tags, setTags] = useState('');
     const [image, setImage] = useState(null);
     const [error,setError]=useState('');
+    const [formData,setFormData]=useState({
+        title:"",
+        description:'',
+        tags:''
+    })
 
     // Handle input changes
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (name === 'title') setTitle(value);
-        if (name === 'description') setDescription(value);
-        if (name === 'tags') setTags(value);
+        setFormData({
+            ...formData,
+            [e.target.name]:e.target.value
+        })
     };
 
     // Handle file input change
@@ -37,7 +42,8 @@ const AddForm = () => {
     // Handle form submission
     const handleSubmit =async (e) => {
         e.preventDefault();
-        const data = await addPhoto({title,description,image,tags});
+        const dataToSend= {...formData,image}
+        const data = await addPhoto(dataToSend);
         console.log(data);
         if(data.status==="success"){
             navigate('/');
@@ -57,21 +63,21 @@ const AddForm = () => {
                 type="text"
                 name="title"
                 placeholder="Title"
-                value={title}
+                value={formData.title}
                 onChange={handleInputChange}
             />
             <input
                 type="text"
                 name="description"
                 placeholder="Description"
-                value={description}
+                value={formData.description}
                 onChange={handleInputChange}
             />
             <input
                 type="text"
                 name="tags"
                 placeholder="Tags"
-                value={tags}
+                value={formData.tags}
                 onChange={handleInputChange}
             />
             <input
