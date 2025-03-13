@@ -91,6 +91,39 @@ class Photo extends PhotoSkeleton
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function update($id, $user_id, $fields)
+    {
+        global $pdo;
+
+        // Ensure photo exists and belongs to the user
+        $sqlCheck = "SELECT user_id FROM photos WHERE id = :id";
+        $stmtCheck = $pdo->prepare($sqlCheck);
+        $stmtCheck->execute([':id' => $id]);
+        $photo = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+
+        if (!$photo || $photo['user_id'] != $user_id) {
+            return false;
+        }
+
+        // Prepare dynamic update query
+        $setClause = [];
+        $params = [':id' => $id];
+
+        foreach ($fields as $key => $value) {
+            $setClause[] = "$key = :$key";
+            $params[":$key"] = $value;
+        }
+
+        if (empty($setClause)) {
+            return false;
+        }
+
+        $sqlUpdate = "UPDATE photos SET " . implode(', ', $setClause) . " WHERE id = :id";
+        $stmtUpdate = $pdo->prepare($sqlUpdate);
+
+        return $stmtUpdate->execute($params);
+    }
+
 }
 
 

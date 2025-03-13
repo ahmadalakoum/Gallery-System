@@ -192,4 +192,59 @@ class PhotoController
             exit();
         }
     }
+    public static function updatePhoto()
+    {
+        $user_id = getBearerToken();
+        if (empty($user_id)) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Unauthorized'
+            ]);
+            exit();
+        }
+
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (empty($data) || !isset($_GET['id'])) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Invalid request'
+            ]);
+            exit();
+        }
+
+        $id = $_GET['id'];
+
+        $allowedFields = ['title', 'description', 'image', 'tags'];
+        $fieldsToUpdate = [];
+
+        foreach ($allowedFields as $field) {
+            if (isset($data[$field]) && !empty($data[$field])) {
+                $fieldsToUpdate[$field] = trim($data[$field]);
+            }
+        }
+
+        if (empty($fieldsToUpdate)) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'No valid fields provided for update'
+            ]);
+            exit();
+        }
+
+        $updated = Photo::update($id, $user_id, $fieldsToUpdate);
+
+        if ($updated) {
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Photo updated successfully'
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Update failed'
+            ]);
+        }
+
+        exit();
+    }
 }
