@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPhoto,updatePhoto } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 import "./AddForm.css";
 const UpdateForm = () => {
+  const navigate=useNavigate();
     const { id }=useParams(); 
   const [photo, setPhoto] = useState({
     title: "",
@@ -10,6 +12,7 @@ const UpdateForm = () => {
     tags: "",
     image: "",
   });
+       const [error,setError]=useState('');
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -26,7 +29,7 @@ const UpdateForm = () => {
             image: data.photo.image,
           });
         } else {
-          console.error("Error fetching photo:", data.message);
+          setError(data.message);
         }
       } catch (error) {
         console.error("Error fetching photo:", error);
@@ -60,12 +63,12 @@ const UpdateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await updatePhoto(id,photo);
+    const response = await updatePhoto(id,{...photo,image:selectedImage});
+    console.log(response);
     if(response.status ==='success'){
-        window.location.href='/';
-            return;
+        navigate('/');
     }else{
-        console.log(response.message);
+        setError(response.message);
     }
 
    
@@ -107,6 +110,8 @@ const UpdateForm = () => {
         <input type="file" name="image" onChange={handleImageChange} />
         <button type="submit">Update Photo</button>
       </form>
+      {error && <div className="error-message">{error}</div>}
+
     </div>
   );
 };

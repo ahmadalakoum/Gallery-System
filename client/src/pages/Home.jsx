@@ -58,6 +58,7 @@ const Home = () => {
               <h3>{photo.title}</h3>
               <p>{photo.description}</p>
               <p>{photo.tags}</p>
+              <div className='actions'>
               <Link to={`/photo/${photo.id}`}>
                 <button>View</button>
               </Link>
@@ -65,13 +66,14 @@ const Home = () => {
                 <button>Update</button>
               </Link>
               <button onClick={() => handleDelete(photo.id)}>Delete</button>
+              </div>
             </div>
           ))
         ) : (
-          <p>No photos available</p>
+          <div className="error-message">{error}</div>
         )}
       </div>
-      {error && <div className="error-message">{error}</div>}
+  
 
 
     </div>

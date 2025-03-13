@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import {login} from '../../services/api';
+import {Link, useNavigate} from 'react-router-dom';
 import "./LoginForm.css";
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [error,setError]=useState('');
@@ -13,7 +15,7 @@ const LoginForm = () => {
             
           localStorage.setItem("userID",data.id);
           localStorage.setItem("username",data.username);
-          window.location.href='/';
+          navigate('/');
         }else{
             setError(data.message);
         }
@@ -39,6 +41,7 @@ const LoginForm = () => {
         />
         <button type="submit">Login</button>
       </form>
+      <Link to='/signup'>Already Have An Account?</Link>
       {error && <div className="error-message">{error}</div>}
     </div>
   </div>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { addPhoto } from '../../services/api';
 import "./AddForm.css";
+import { useNavigate } from 'react-router-dom';
 
 const AddForm = () => {
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState('');
     const [image, setImage] = useState(null);
+    const [error,setError]=useState('');
 
     // Handle input changes
     const handleInputChange = (e) => {
@@ -37,11 +40,11 @@ const AddForm = () => {
         const data = await addPhoto({title,description,image,tags});
         console.log(data);
         if(data.status==="success"){
-            window.location.href='/';
+            navigate('/');
             return;
         }
         else{
-            console.log(data.message);
+            setError(data.message);
         }
 
     };
@@ -77,6 +80,7 @@ const AddForm = () => {
             />
             <button type="submit">Add Photo</button>
         </form>
+        {error && <div className="error-message">{error}</div>}
     </div>
     );
 };

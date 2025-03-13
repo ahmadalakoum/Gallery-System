@@ -43,12 +43,12 @@ class Photo extends PhotoSkeleton
 
     }
 
-    public static function all()
+    public static function all($user_id)
     {
         global $pdo;
-        $sql = "SELECT p.*  FROM photos p JOIN users ON p.user_id=users.id ";
+        $sql = "SELECT *  FROM photos WHERE user_id=:userID";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([':userID' => $user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

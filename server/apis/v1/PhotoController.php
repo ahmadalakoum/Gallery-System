@@ -101,7 +101,7 @@ class PhotoController
             ]);
             exit();
         }
-        $photos = Photo::all();
+        $photos = Photo::all($user_id);
         if (!empty($photos)) {
             echo json_encode([
                 'status' => 'success',

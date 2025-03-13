@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import { signup } from '../../services/api';
 import "./SignupForm.css";
+import {useNavigate} from "react-router-dom";
 const SignupForm = () => {
+  const navigate = useNavigate();
     const [username,setUsername]=useState('');
     const [email,setEmail]= useState('');
     const [password,setPassword]=useState('');
@@ -11,7 +13,7 @@ const SignupForm = () => {
         const data = await signup({username,email,password});
       
         if(data.status==='success'){
-            window.location.href='/login';
+            navigate('/login');
         }else{
             setError(data.message)
         }
