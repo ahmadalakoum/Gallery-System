@@ -1,10 +1,10 @@
 <?php
 
 //require the db connection
-require_once "./connection/connection.php";
+require_once "../connection/connection.php";
 
 //get migration folder
-$migrationsDir = 'migrations/';
+$migrationsDir = '../migrations/';
 // echo $migrationsDir;
 
 
