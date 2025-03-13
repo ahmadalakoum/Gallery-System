@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import AddPhoto from './pages/AddPhoto';
 import Photo from './components/Gallery/Photo';
 import "./App.css";
+import UpdatePhoto from './pages/UpdatePhoto';
 const App = () => {
   return (
     <BrowserRouter>
@@ -15,6 +16,8 @@ const App = () => {
         <Route path="/add" element={<AddPhoto/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/photo/:id" element={<Photo/>}/>
+        <Route path="/update/:id" element={<UpdatePhoto/>}/>
+        
 
 
       </Routes>

@@ -96,3 +96,17 @@ export const addPhoto = async(imageData)=>{
         return;
     }
 }
+export const updatePhoto= async (id,imageData)=>{
+    try{
+        const userID = localStorage.getItem("userID");
+        const response = await axios.post(`${API_URL}/update?id=${id}`,imageData,{
+            headers:{
+                "Authorization": `Bearer ${userID}`
+            },
+        });
+        return response.data;
+    }catch(error){
+        console.log(error);
+        return;
+    }
+}

@@ -61,6 +61,9 @@ const Home = () => {
               <Link to={`/photo/${photo.id}`}>
                 <button>View</button>
               </Link>
+              <Link to={`/update/${photo.id}`}>
+                <button>Update</button>
+              </Link>
               <button onClick={() => handleDelete(photo.id)}>Delete</button>
             </div>
           ))
