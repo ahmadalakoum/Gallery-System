@@ -8,6 +8,7 @@ export const login = async (userData)=>{
         return response.data;
     }catch(error){
         console.log(error);
+        return;
     }
 }
 
@@ -17,5 +18,66 @@ export const signup = async (userData)=>{
         return response.data;
     }catch(error){
         console.log(error);
+        return;
+    }
+}
+
+export const getPhotos = async ()=>{
+    try{
+        const userID = localStorage.getItem("userID");
+        const response = await axios.get(`${API_URL}/photos`,{
+            headers:{
+                "Authorization": `Bearer ${userID}`
+            },
+        });
+        return response.data;
+    }catch(error){
+        console.log(error);
+        return ;
+    }
+}
+
+export const deletePhoto = async (id)=>{
+    try{
+        const userID = localStorage.getItem("userID");
+        const response = await axios.get(`${API_URL}/delete?id=${id}`,{
+            headers:{
+                "Authorization": `Bearer ${userID}`
+            },
+        });
+        return response.data;
+    }catch(error){
+        console.log(error);
+        return ;
+    }
+}
+
+export const getPhoto= async (id)=>{
+    try{
+        const userID = localStorage.getItem("userID");
+        const response = await axios.get(`${API_URL}/photo?id=${id}`,{
+            headers:{
+                "Authorization": `Bearer ${userID}`
+            },
+        });
+        return response.data;
+    }catch(error){
+        console.log(error);
+        return ;
+    }
+}
+
+export const searchPhotos= async (query)=>{
+    try{
+        const userID = localStorage.getItem("userID");
+        const response = await axios.get(`${API_URL}/search?search=${query}`,{
+            headers:{
+                "Authorization": `Bearer ${userID}`
+            },
+        });
+        return response.data;
+    }catch(error){
+        console.log(error);
+        return ;
     }
 }

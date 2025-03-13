@@ -1,0 +1,45 @@
+.photo-detail {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Styling the title */
+  .photo-detail h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Styling the image */
+  .photo-detail img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Styling the description */
+  .photo-detail p {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  /* Styling the tags */
+  .photo-detail p:last-of-type {
+    font-style: italic;
+    color: #888;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+  }

@@ -46,7 +46,7 @@ class Photo extends PhotoSkeleton
     public static function all()
     {
         global $pdo;
-        $sql = "SELECT * FROM photos JOIN users ON photos.user_id=users.id ";
+        $sql = "SELECT p.*  FROM photos p JOIN users ON p.user_id=users.id ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -58,10 +58,6 @@ class Photo extends PhotoSkeleton
 
         // Check if id or user_id is empty
         if (empty($id) || empty($user_id)) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing ID or User ID'
-            ]);
             return false;
         }
 
@@ -71,10 +67,6 @@ class Photo extends PhotoSkeleton
         $photo = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
         if (!$photo || $photo['user_id'] != $user_id) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Unauthorized or photo not found'
-            ]);
             return false;
         }
 
@@ -82,16 +74,8 @@ class Photo extends PhotoSkeleton
         $stmtDelete = $pdo->prepare($sqlDelete);
 
         if ($stmtDelete->execute([':id' => $id, ':user_id' => $user_id])) {
-            echo json_encode([
-                'status' => 'success',
-                'message' => 'Photo deleted successfully'
-            ]);
             return true;
         } else {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Failed to delete photo'
-            ]);
             return false;
         }
     }
@@ -105,8 +89,6 @@ class Photo extends PhotoSkeleton
         $stmt->execute([':searchTerm' => "%" . $searchTerm . "%"]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
     }
 
 }
