@@ -60,7 +60,7 @@ const Home = () => {
               <p>{photo.tags}</p>
               <div className='actions'>
               <Link to={`/photo/${photo.id}`}>
-                <button>View</button>
+                <button className='Green'>View</button>
               </Link>
               <Link to={`/update/${photo.id}`}>
                 <button>Update</button>

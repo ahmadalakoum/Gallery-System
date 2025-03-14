@@ -38,6 +38,9 @@ button, a > button {
   border-radius: 10px;
   margin:10px;
 }
+.Green{
+  background-color: cadetblue;
+}
 
 button:hover {
   background: #cc0000;
