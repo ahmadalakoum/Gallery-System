@@ -1,15 +1,16 @@
 import React,{useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 const NavBar = ({onSearch}) => {
   const userID = localStorage.getItem("userID");
   const username = localStorage.getItem("username");
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("userID");
     localStorage.removeItem("username");
-    window.location.href = "/login";
+    navigate('/login');
   };
 
   const handleChange = (event) => {
