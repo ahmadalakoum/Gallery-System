@@ -10,7 +10,7 @@ const NavBar = ({onSearch}) => {
   const handleLogout = () => {
     localStorage.removeItem("userID");
     localStorage.removeItem("username");
-    navigate('/');
+    navigate('/login');
   };
 
   const handleChange = (event) => {
