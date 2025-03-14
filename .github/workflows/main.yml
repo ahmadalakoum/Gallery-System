@@ -16,13 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4  # Checks out the repository code
 
-      - name : Echo in CI
-        run: echo "Hello From CI"
+      - name: Echo in CI
+        run: echo "Hello From CI"  # Prints Hello from CI
+
   deploy:
-     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # The OS on which the deployment will run
 
-     steps:
-     - name: Echo In CD
-     - run : echo "Hello From CD"
-
-        
+    steps:
+      - name: Echo in CD
+        run: echo "Hello From CD"  # Prints Hello from CD
