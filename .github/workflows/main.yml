@@ -45,3 +45,8 @@ jobs:
           script: |
             cd /var/www/html/Gallery-System
             sudo git pull origin main
+            cd client
+            npm install
+            npm run build
+            sudo cp -r /var/www/html/Gallery-System/client/dist/* /var/www/html/
+            sudo systemctl restart apache2
