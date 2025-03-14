@@ -15,14 +15,33 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4  # Checks out the repository code
+      - name: Install node js
+        uses : actions/setup-node@v3
+        with : 
+          node-version: "18"
 
-      - name: Echo in CI
-        run: echo "Hello From CI"  # Prints Hello from CI
+      - name : Install frontend dependencies
+        run : |
+          cd client
+          npm install
+      - name: build react app
+        run : |
+          cd client
+          npm run build
 
+          
   deploy:
     runs-on: ubuntu-latest  # The OS on which the deployment will run
     needs: build
 
+    
     steps:
-      - name: Echo in CD
-        run: echo "Hello From CD"  # Prints Hello from CD
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.SERVER_HOST}}
+          username : ${{secrets.SERVER_USER}}
+          key: ${{secrets.SERVER_SSH_KEY}}
+          script: |
+            cd /var/www/html/Gallery-System
+            sudo git pull origin main
