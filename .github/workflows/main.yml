@@ -21,6 +21,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest  # The OS on which the deployment will run
+    needs: build
 
     steps:
       - name: Echo in CD
