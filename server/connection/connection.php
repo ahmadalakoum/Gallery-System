@@ -3,7 +3,7 @@
 // connection file
 $host = "localhost";
 $username = "root";
-$pass = "password";
+$pass = "";
 $db_name = "gallery";
 
 try {
