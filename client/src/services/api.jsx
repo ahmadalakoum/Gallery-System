@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL= 'http://localhost/Gallery-System/server';
+const API_URL= 'http://alakoumahmad.zapto.org/Gallery-System/server';
 
 export const login = async (userData)=>{
     try{
